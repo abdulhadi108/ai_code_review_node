@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-aicode}
+      MYSQL_USER: ${MYSQL_USER:-aicode}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-aicodepass}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    restart: on-failure
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app
+
+  frontend:
+    build: ./frontend
+    restart: on-failure
+    ports:
+      - "5173:5173"
+    env_file:
+      - ./frontend/.env
+    volumes:
+      - ./frontend:/usr/src/app
+    depends_on:
+      - backend
+
+volumes:
+  db-data:

@@ -1,0 +1,11 @@
+const fs = require('fs');
+const path = require('path');
+
+// Create a unique file in the same folder as review.js
+const tempFileName = path.join(__dirname, `temp_code_${Date.now()}.js`);
+fs.writeFileSync(tempFileName, code, 'utf8');
+
+// Run your linter on tempFileName...
+
+// Delete the file after use
+fs.unlinkSync(tempFileName);
