@@ -1,6 +1,6 @@
 AI-Assisted Code Review & Bug Detection (Node.js + MySQL) - Starter Kit
 ======================================================================
-
+email:hadi108.abdul@gmail.com
 What's included
 - frontend/: React + Vite + Monaco Editor
 - backend/: Node.js + Express + Sequelize (MySQL)
