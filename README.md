@@ -23,7 +23,7 @@ Backend:
   - npm install
   - copy .env.example to .env and update
   - npm run migrate
-  - npm run dev
+  - node server.js
 
 Frontend:
   - cd frontend
